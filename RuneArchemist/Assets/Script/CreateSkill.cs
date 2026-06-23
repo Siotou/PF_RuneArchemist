@@ -1,7 +1,23 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CreateSkill : MonoBehaviour
 {
+
+    [System.Serializable]
+    public struct MaterialData
+    {
+        public int fire;
+        public int water;
+        public int wind;
+        public int thunder;
+        public int rock;
+
+        public int attack;
+        public int speed;
+        public int mpCost;
+    }
+
     public int[] typestatus = { 0, 0, 0, 0, 0 };
     public int[] status = { 0, 0, 0, 0, 0, 0 };
 
@@ -22,6 +38,9 @@ public class CreateSkill : MonoBehaviour
         new Vector2(1.6f,0.9f),
         };//0=‰Î 1=•— 2=… 3=—‹ 4=Šâ
 
+    [Header("UI—p")]
+    [SerializeField] Text[] statustexts;
+
     [Space]
     //“Š“ü‚µ‚½‘fŞ
     public int material=0;
@@ -36,12 +55,65 @@ public class CreateSkill : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (statustexts != null)
+        {
+            for (int i = 0; i < statustexts.Length; i++)
+            {
+                if (i < 5)
+                {
+                    statustexts[i].text = typestatus[i].ToString();
+                }
+                else
+                {
+                    statustexts[i].text = status[i].ToString();
+                }
+            }
+        }
     }
 
     public void SkillBuild(int[] t, int[]s)
     {
 
     }
-
+    
+    public void addmaterial(int[] s)
+    {
+        for (int i = 0; i < s.Length; i++)
+        {
+            if (i < 5)
+            {
+                typestatus[i] = s[i];
+            }
+            else
+            {
+                status[i - 1] = s[i];
+            }
+        }
+        int[] types = typestatus;
+        for (int i = 0; i < 0; i++)
+        {
+            int b = 0;
+            if (types[i] < types[i + 1])
+            {
+                int a = types[i];
+                types[i] = types[i + 1];
+                types[i + 1] = a;
+            }
+            if (i == types.Length) i = 0;
+            for (int j = 0; j < types.Length - 1; j++)
+            {
+                if (types[j] == types[j + 1])
+                {
+                    b++;
+                }
+            }
+            if (b == types.Length - 1)
+            {
+                Debug.Log("•À‚Ñ‘Ö‚¦¬Œ÷");
+                Debug.Log("‡”Ô" + types[0] + "¨" + types[1] + "¨" + types[2] + "¨" + types[3] + "¨" + types[4]);
+                break;
+            }
+        }
+        material++;
+    }
 }
