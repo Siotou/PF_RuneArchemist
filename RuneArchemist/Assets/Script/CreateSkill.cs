@@ -4,19 +4,8 @@ using UnityEngine.UI;
 public class CreateSkill : MonoBehaviour
 {
 
-    [System.Serializable]
-    public struct MaterialData
-    {
-        public int fire;
-        public int water;
-        public int wind;
-        public int thunder;
-        public int rock;
-
-        public int attack;
-        public int speed;
-        public int mpCost;
-    }
+    [SerializeField] PlayerData playerData;
+    [SerializeField]MaterialDatabase materialdatabase;
 
     public int[] typestatus = { 0, 0, 0, 0, 0 };
     public int[] status = { 0, 0, 0, 0, 0, 0 };
@@ -36,10 +25,12 @@ public class CreateSkill : MonoBehaviour
         new Vector2(0.5f,1.6f),
         new Vector2(1f,1.5f),
         new Vector2(1.6f,0.9f),
-        };//0=‰Î 1=•— 2=… 3=—‹ 4=Šâ
+        };//0=‰Î 1=… 2=•— 3=Šâ 4=—‹
 
     [Header("UI—p")]
     [SerializeField] Text[] statustexts;
+    [SerializeField] Text[] createtext;
+    [SerializeField] GameObject ButtonPrefab;
 
     [Space]
     //“Š“ü‚µ‚½‘fŞ
@@ -49,7 +40,23 @@ public class CreateSkill : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        playerData = GameObject.FindFirstObjectByType<PlayerData>();
+        if (playerData == null)
+        {
+            int button = 0;//¶¬‚µ‚½ƒ{ƒ^ƒ“‚Ì”
+            for (int i = 0; i < playerData.Material_value.Length; i++)
+            {
+                if (playerData.Material_value[i] > 0)
+                {
+                    GameObject a = Instantiate(ButtonPrefab);
+                    MatterialButtonManager b = a.GetComponent<MatterialButtonManager>();
+                    b.MatterialNo = i;
+                    b.m_Text.text = materialdatabase.materials[i].Name;
+                    button++;
+                }
+            }
+        }
+
     }
 
     // Update is called once per frame

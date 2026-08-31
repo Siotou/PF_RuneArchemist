@@ -1,0 +1,495 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0e512733b0aea643b2c0817805b3a31, type: 3}
+  m_Name: MaterialDatabase
+  m_EditorClassIdentifier: 
+  materials:
+  - No: 1
+    Name: "\u30E0\u30AB\u30E0\u30AB\u9CE5\u306E\u722A"
+    Rare: 0
+    Fire: 0
+    Water: 0
+    Wind: 0
+    Rock: 0
+    Thunder: 0
+    Attack: 20
+    Speed: 0
+    MP: 0
+    Explain: "\u30E0\u30AB\u30E0\u30AB\u9CE5\u306E\u722A\u3002"
+  - No: 2
+    Name: "\u30A8\u30CD\u30EB\u8349"
+    Rare: 0
+    Fire: 0
+    Water: 0
+    Wind: 5
+    Rock: 0
+    Thunder: 0
+    Attack: -10
+    Speed: 10
+    MP: 10
+    Explain: "\u9B54\u529B\u304C\u62BD\u51FA\u3067\u304D\u308B\u4E0D\u601D\u8B70\u306A\u8349\u3002"
+  - No: 3
+    Name: "\u30AB\u30EB\u30AC\u30EB\u77F3"
+    Rare: 0
+    Fire: 0
+    Water: 0
+    Wind: 0
+    Rock: 0
+    Thunder: 0
+    Attack: 0
+    Speed: 20
+    MP: 0
+    Explain: "\u9B54\u6CD5\u304C\u8EFD\u3005\u653E\u3066\u308B\u3088\u3046\u306B\u306A\u308B\u4E0D\u601D\u8B70\u306A\u77F3\u3002"
+  - No: 4
+    Name: "\u30C1\u30E3\u30C3\u30AB\u80DE\u5B50"
+    Rare: 0
+    Fire: 20
+    Water: 0
+    Wind: 0
+    Rock: 0
+    Thunder: 0
+    Attack: 10
+    Speed: 0
+    MP: 0
+    Explain: "\u30C1\u30E3\u30C3\u30AB\u82B1\u304B\u3089\u51FA\u305F\u80DE\u5B50\u3002"
+  - No: 5
+    Name: "\u30D1\u30EF\u30FC\u30A6\u30A9\u30FC\u30BF\u30FC"
+    Rare: 0
+    Fire: 0
+    Water: 20
+    Wind: 0
+    Rock: 0
+    Thunder: 0
+    Attack: 10
+    Speed: 0
+    MP: 0
+    Explain: "\u4E0D\u601D\u8B70\u306A\u6C34\u3002"
+  - No: 6
+    Name: "\u5C0F\u7ADC\u5DFB"
+    Rare: 0
+    Fire: 0
+    Water: 0
+    Wind: 20
+    Rock: 0
+    Thunder: 0
+    Attack: 0
+    Speed: 10
+    MP: 0
+    Explain: "\u7ADC\u5DFB\u306E\u901A\u3063\u305F\u75D5\u8DE1\u3068\u3057\u3066\u6B8B\u308B\u5C0F\u3055\u306A\u98A8\u3002"
+  - No: 7
+    Name: "\u30B4\u30D6\u30EA\u30F3\u306E\u89D2"
+    Rare: 1
+    Fire: 0
+    Water: 0
+    Wind: 0
+    Rock: 0
+    Thunder: 0
+    Attack: 30
+    Speed: 20
+    MP: 0
+    Explain: "\u30B4\u30D6\u30EA\u30F3\u306E\u89D2\u3002\u307C\u3053\u307C\u3053\u3057\u3066\u3044\u308B\u3002"
+  - No: 8
+    Name: "\u30A8\u30CD\u30EB\u9271\u77F3"
+    Rare: 1
+    Fire: 0
+    Water: 0
+    Wind: 0
+    Rock: 5
+    Thunder: 0
+    Attack: 20
+    Speed: 0
+    MP: 20
+    Explain: "\u9B54\u529B\u304C\u56FA\u307E\u3063\u3066\u3067\u304D\u305F\u9271\u77F3\u3002"
+  - No: 9
+    Name: "\u30AC\u30F3\u30D0\u30EB\u30FC\u30C0\u306E\u7FBD"
+    Rare: 1
+    Fire: 0
+    Water: 0
+    Wind: 0
+    Rock: 0
+    Thunder: 0
+    Attack: 10
+    Speed: 40
+    MP: 0
+    Explain: "\u30AC\u30F3\u30D0\u30EB\u30FC\u30C0\u306E\u7FBD\u3002"
+  - No: 10
+    Name: "\u30C9\u30E9\u30B4\u30F3\u306E\u706B\u306E\u7C89"
+    Rare: 1
+    Fire: 30
+    Water: 0
+    Wind: 0
+    Rock: 0
+    Thunder: 0
+    Attack: 30
+    Speed: 0
+    MP: 0
+    Explain: "\u30C9\u30E9\u30B4\u30F3\u304C\u51FA\u3057\u305F\u706B\u82B1\u3002\u305A\u3063\u3068\u8D64\u304F\u71C3\u3048\u3066\u3044\u308B\u3002"
+  - No: 11
+    Name: "\u4EBA\u9B5A\u306E\u8033\u98FE\u308A"
+    Rare: 1
+    Fire: 0
+    Water: 30
+    Wind: 0
+    Rock: 0
+    Thunder: 0
+    Attack: 0
+    Speed: 30
+    MP: 0
+    Explain: "\u4EBA\u9B5A\u304C\u8EAB\u306B\u7740\u3051\u3066\u3044\u308B\u8033\u98FE\u308A\u3002"
+  - No: 12
+    Name: "\u5996\u7CBE\u306E\u5F13\u77E2"
+    Rare: 1
+    Fire: 0
+    Water: 0
+    Wind: 30
+    Rock: 0
+    Thunder: 0
+    Attack: 20
+    Speed: 10
+    MP: 0
+    Explain: "\u98A8\u306E\u5996\u7CBE\u304C\u4F7F\u3063\u3066\u3044\u308B\u5F13\u77E2\u3002"
+  - No: 13
+    Name: "\u30D3\u30EA\u30D3\u30EA\u8349"
+    Rare: 1
+    Fire: 0
+    Water: 0
+    Wind: 0
+    Rock: 0
+    Thunder: 20
+    Attack: 0
+    Speed: 20
+    MP: 0
+    Explain: "\u89E6\u308B\u3068\u30D3\u30EA\u30D3\u30EA\u3059\u308B\u4E0D\u601D\u8B70\u306A\u8349\u3002"
+  - No: 14
+    Name: "\u30ED\u30C3\u30AF\u30D5\u30E9\u30EF\u30FC"
+    Rare: 1
+    Fire: 0
+    Water: 0
+    Wind: 0
+    Rock: 20
+    Thunder: 0
+    Attack: 20
+    Speed: 0
+    MP: 0
+    Explain: "\u5CA9\u306E\u3088\u3046\u306B\u56FA\u3044\u82B1\u3073\u3089\u3092\u6301\u3064\u82B1\u3002"
+  - No: 15
+    Name: "\u30B9\u30B1\u30EB\u30C8\u30F3\u306E\u9AA8"
+    Rare: 2
+    Fire: 0
+    Water: 0
+    Wind: 0
+    Rock: 0
+    Thunder: 0
+    Attack: 110
+    Speed: -10
+    MP: 0
+    Explain: "\u30B9\u30B1\u30EB\u30C8\u30F3\u304B\u3089\u843D\u3061\u305F\u9AA8\u3002\u9AA8\u5BC6\u5EA6\u304C\u3068\u3066\u3082\u9AD8\u3044\u3002"
+  - No: 16
+    Name: "\u30A8\u30CD\u30EB\u30AA\u30FC\u30D6"
+    Rare: 2
+    Fire: 0
+    Water: 0
+    Wind: 0
+    Rock: 0
+    Thunder: 10
+    Attack: 10
+    Speed: 0
+    MP: 30
+    Explain: "\u30A8\u30CD\u30EB\u30AE\u30FC\u304C\u8A70\u307E\u3063\u305F\u30AA\u30FC\u30D6\u3002\u30D3\u30EA\u30D3\u30EA\u3059\u308B\u3002"
+  - No: 17
+    Name: "\u30A4\u30BD\u30A4\u30BD\u30DD\u30FC\u30B7\u30E7\u30F3"
+    Rare: 2
+    Fire: 0
+    Water: 0
+    Wind: 0
+    Rock: 0
+    Thunder: 0
+    Attack: 0
+    Speed: 100
+    MP: 0
+    Explain: "\u3053\u308C\u3092\u304B\u3051\u308B\u3068\u3069\u3093\u306A\u751F\u304D\u7269\u3001\u7269\u4F53\u3082\u65E9\u304F\u306A\u308B\u4E0D\u601D\u8B70\u306A\u6DB2\u4F53\u3002"
+  - No: 18
+    Name: "\u30AB\u30C1\u30B3\u30C1\u30DE\u30B0\u30DE\u9271\u77F3"
+    Rare: 2
+    Fire: 50
+    Water: 0
+    Wind: 0
+    Rock: 30
+    Thunder: 0
+    Attack: 70
+    Speed: -20
+    MP: 0
+    Explain: "\u3068\u3042\u308B\u30E2\u30F3\u30B9\u30BF\u30FC\u306B\u4ED8\u7740\u3057\u3066\u3044\u308B\u9271\u77F3\u3002\u89E6\u308B\u3068\u6691\u3044\u3002"
+  - No: 19
+    Name: "\u30A6\u30A9\u30FC\u30BF\u30FC\u30EB\u30FC\u30F3"
+    Rare: 2
+    Fire: 0
+    Water: 50
+    Wind: 0
+    Rock: 20
+    Thunder: 0
+    Attack: 30
+    Speed: 50
+    MP: 0
+    Explain: "\u53E4\u4EE3\u4EBA\u304C\u6C34\u306E\u9B54\u529B\u3092\u56FA\u3081\u3066\u4F5C\u3063\u305F\u30EB\u30FC\u30F3\u3002"
+  - No: 20
+    Name: "\u98A8\u9B54\u77F3"
+    Rare: 2
+    Fire: 0
+    Water: 0
+    Wind: 50
+    Rock: 20
+    Thunder: 0
+    Attack: -10
+    Speed: 70
+    MP: 0
+    Explain: "\u98A8\u306E\u9B54\u529B\u304C\u8FBC\u3081\u3089\u308C\u305F\u77F3\u3002"
+  - No: 21
+    Name: "\u9ED2\u6DF5\u5CA9"
+    Rare: 2
+    Fire: 0
+    Water: 0
+    Wind: 0
+    Rock: 50
+    Thunder: 0
+    Attack: 70
+    Speed: 5
+    MP: 0
+    Explain: "\u3068\u3066\u3082\u56FA\u3044\u5CA9\u3002"
+  - No: 22
+    Name: "\u96F7\u306E\u77E2"
+    Rare: 2
+    Fire: 0
+    Water: 0
+    Wind: 0
+    Rock: 0
+    Thunder: 60
+    Attack: 50
+    Speed: 10
+    MP: 5
+    Explain: "\u30DF\u30CE\u30BF\u30A6\u30ED\u30B9\u304C\u4F7F\u3046\u77E2\u3002"
+  - No: 23
+    Name: "\u30DF\u30CE\u30BF\u30A6\u30ED\u30B9\u306E\u89D2"
+    Rare: 3
+    Fire: 0
+    Water: 0
+    Wind: 0
+    Rock: 0
+    Thunder: 0
+    Attack: 160
+    Speed: -10
+    MP: 0
+    Explain: "\u3068\u3066\u3082\u5927\u304D\u306A\u89D2\u3002\u92ED\u304F\u3066\u304B\u305F\u3044\u3002"
+  - No: 24
+    Name: "\u30A8\u30CD\u30EB\u30AE\u30FC\u30B3\u30A2"
+    Rare: 3
+    Fire: 0
+    Water: 0
+    Wind: 0
+    Rock: 0
+    Thunder: 0
+    Attack: 0
+    Speed: -10
+    MP: 60
+    Explain: "\u91CF\u7523\u30B4\u30FC\u30EC\u30E0\u306B\u642D\u8F09\u3055\u308C\u3066\u3044\u308B\u6A5F\u68B0\u3002"
+  - No: 25
+    Name: "\u30EF\u30A4\u30D0\u30FC\u30F3\u306E\u7FFC"
+    Rare: 3
+    Fire: 0
+    Water: 0
+    Wind: 0
+    Rock: 0
+    Thunder: 0
+    Attack: 50
+    Speed: 100
+    MP: 0
+    Explain: "\u30EF\u30A4\u30D0\u30FC\u30F3\u306E\u7FFC\u3002"
+  - No: 26
+    Name: "\u4E0D\u6B7B\u9CE5\u306E\u7FBD"
+    Rare: 3
+    Fire: 70
+    Water: 0
+    Wind: 20
+    Rock: 0
+    Thunder: 0
+    Attack: 50
+    Speed: 60
+    MP: 0
+    Explain: "\u3068\u3042\u308B\u4E0D\u6B7B\u9CE5\u304C\u843D\u3068\u3057\u305F\u7FBD\u3002"
+  - No: 27
+    Name: "\u30AF\u30E9\u30FC\u30B1\u30F3\u306E\u8DB3"
+    Rare: 3
+    Fire: 0
+    Water: 70
+    Wind: 20
+    Rock: 0
+    Thunder: 0
+    Attack: 70
+    Speed: 40
+    MP: 0
+    Explain: "\u30AF\u30E9\u30FC\u30B1\u30F3\u304B\u3089\u5207\u308A\u843D\u3068\u3057\u305F\u8DB3\u3002"
+  - No: 28
+    Name: "\u30C8\u30EC\u30F3\u30C8\u306E\u539F\u6728"
+    Rare: 3
+    Fire: 0
+    Water: 0
+    Wind: 70
+    Rock: 15
+    Thunder: 0
+    Attack: 30
+    Speed: 80
+    MP: 0
+    Explain: "\u6728\u306E\u7CBE\u970A\u304C\u843D\u3068\u3057\u305F\u539F\u6728\u3002"
+  - No: 29
+    Name: "\u5CA9\u571F\u7ADC\u306E\u9C57"
+    Rare: 3
+    Fire: 0
+    Water: 0
+    Wind: 0
+    Rock: 90
+    Thunder: 0
+    Attack: 100
+    Speed: -20
+    MP: 0
+    Explain: "\u5CA9\u306E\u3088\u3046\u306B\u56FA\u3044\u4F53\u3092\u6301\u3064\u7ADC\u306E\u9C57\u3002"
+  - No: 30
+    Name: "\u30AD\u30DE\u30A4\u30E9\u306E\u6BDB\u76AE"
+    Rare: 3
+    Fire: 0
+    Water: 0
+    Wind: 20
+    Rock: 0
+    Thunder: 60
+    Attack: 50
+    Speed: 55
+    MP: 0
+    Explain: "\u96F7\u3092\u5E2F\u3073\u305F\u30AD\u30DE\u30A4\u30E9\u306E\u6BDB\u76AE\u3002"
+  - No: 31
+    Name: "\u30C7\u30E5\u30E9\u30CF\u30F3\u306E\u93A7"
+    Rare: 4
+    Fire: 0
+    Water: 0
+    Wind: 0
+    Rock: 0
+    Thunder: 0
+    Attack: 150
+    Speed: 100
+    MP: 0
+    Explain: "\u30C7\u30E5\u30E9\u30CF\u30F3\u304C\u8EAB\u306B\u7740\u3051\u3066\u3044\u305F\u93A7\u306E\u4E00\u90E8\u3002"
+  - No: 32
+    Name: "\u30A8\u30BF\u30FC\u30CA\u30EB\u30B3\u30A2"
+    Rare: 4
+    Fire: 0
+    Water: 0
+    Wind: 0
+    Rock: 0
+    Thunder: 0
+    Attack: 0
+    Speed: 0
+    MP: 100
+    Explain: "\u51FA\u81EA\u4E0D\u660E\u306E\u8B0E\u306E\u534A\u6C38\u4E45\u6A5F\u95A2\u3002"
+  - No: 33
+    Name: "\u53E4\u4EE3\u5F0F\u52A0\u901F\u88C5\u7F6E"
+    Rare: 4
+    Fire: 0
+    Water: 0
+    Wind: 0
+    Rock: 0
+    Thunder: 0
+    Attack: 50
+    Speed: 200
+    MP: 0
+    Explain: "\u4F7F\u3046\u3068\u8D85\u30B9\u30D4\u30FC\u30C9\u304C\u5F97\u3089\u308C\u308B\u4E0D\u601D\u8B70\u306A\u6A5F\u68B0\u3002"
+  - No: 34
+    Name: "\u30A4\u30D5\u30EA\u30FC\u30C8\u30BD\u30A6\u30EB"
+    Rare: 4
+    Fire: 120
+    Water: 0
+    Wind: 0
+    Rock: 20
+    Thunder: 0
+    Attack: 180
+    Speed: 20
+    MP: 0
+    Explain: "\u30A4\u30D5\u30EA\u30FC\u30C8\u306E\u4F53\u306B\u5165\u3063\u3066\u3044\u305F\u9B54\u529B\u306E\u6838\u3002"
+  - No: 35
+    Name: "\u30BB\u30A4\u30EC\u30FC\u30F3\u306E\u6D99"
+    Rare: 4
+    Fire: 0
+    Water: 120
+    Wind: 30
+    Rock: 0
+    Thunder: 0
+    Attack: -40
+    Speed: 220
+    MP: 20
+    Explain: "\u30BB\u30A4\u30EC\u30FC\u30F3\u304C\u3053\u307C\u3057\u305F\u6D99\u3002\u5F37\u529B\u306A\u9B54\u529B\u304C\u8FBC\u3081\u3089\u308C\u3066\u3044\u308B\u3002"
+  - No: 36
+    Name: "\u5927\u5929\u72D7\u306E\u3046\u3061\u308F"
+    Rare: 4
+    Fire: 0
+    Water: 0
+    Wind: 120
+    Rock: 0
+    Thunder: 0
+    Attack: -50
+    Speed: 250
+    MP: 0
+    Explain: "\u5927\u5929\u72D7\u304C\u6301\u3063\u3066\u3044\u308B\u5F37\u98A8\u3092\u8D77\u3053\u305B\u308B\u3046\u3061\u308F\u3002"
+  - No: 37
+    Name: "\u30A8\u30EC\u30AD\u30EA\u30B6\u30FC\u30C9\u306E\u9B42"
+    Rare: 4
+    Fire: 0
+    Water: 0
+    Wind: 0
+    Rock: 100
+    Thunder: 0
+    Attack: 70
+    Speed: 100
+    MP: 20
+    Explain: "\u30A8\u30EC\u30AD\u30EA\u30B6\u30FC\u30C9\u306E\u9577\u304C\u6B7B\u3093\u3060\u3068\u304D\u843D\u3068\u3059\u9B42\u306E\u6838\u3002"
+  - No: 38
+    Name: "\u53E4\u4EE3\u30B4\u30FC\u30EC\u30E0\u306E\u7834\u7247"
+    Rare: 4
+    Fire: 0
+    Water: 0
+    Wind: 0
+    Rock: 0
+    Thunder: 100
+    Attack: 200
+    Speed: -40
+    MP: 40
+    Explain: "\u53E4\u4EE3\u907A\u8DE1\u306B\u3044\u308B\u30B4\u30FC\u30EC\u30E0\u304C\u843D\u3068\u3059\u77F3\u3002"
+  - No: 39
+    Name: "\u30CA\u30F3\u30C7\u30E2\u30A2\u30EA\u77F3A"
+    Rare: 4
+    Fire: 200
+    Water: 200
+    Wind: 200
+    Rock: 0
+    Thunder: 0
+    Attack: 200
+    Speed: 200
+    MP: 100
+    Explain: "\u30C6\u30B9\u30C8\u7528\u306E\u7D20\u6750\u305D\u306E\uFF11\u3002"
+  - No: 40
+    Name: "\u30CA\u30F3\u30C7\u30E2\u30A2\u30EA\u77F3B"
+    Rare: 4
+    Fire: 0
+    Water: 0
+    Wind: 0
+    Rock: 200
+    Thunder: 200
+    Attack: 200
+    Speed: 200
+    MP: 100
+    Explain: "\u30C6\u30B9\u30C8\u7528\u306E\u7D20\u6750\u305D\u306E\uFF12\u3002"
