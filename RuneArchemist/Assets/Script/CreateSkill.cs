@@ -41,7 +41,7 @@ public class CreateSkill : MonoBehaviour
     void Start()
     {
         playerData = GameObject.FindFirstObjectByType<PlayerData>();
-        if (playerData == null)
+        if (playerData != null)
         {
             int button = 0;//¶¬‚µ‚½ƒ{ƒ^ƒ“‚Ì”
             for (int i = 0; i < playerData.Material_value.Length; i++)
