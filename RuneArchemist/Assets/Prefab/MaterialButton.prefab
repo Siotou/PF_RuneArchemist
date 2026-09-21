@@ -297,7 +297,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MatterialNo: 0
   m_Text: {fileID: 5563399686683887275}
+  m_Rank: 0
+  m_Button: {fileID: 6533687225528992808}
+  ButtonSprite:
+  - {fileID: 21300000, guid: ae54c8b68cd06de44a9a6edc035d9261, type: 3}
+  - {fileID: 21300000, guid: 708a393748f375f469144e1d6d90e4f0, type: 3}
+  - {fileID: 21300000, guid: e2b347f7c31420949ba62784d78ac890, type: 3}
+  - {fileID: 21300000, guid: a6fb164ee50555c48a9939590e0fb383, type: 3}
+  - {fileID: 21300000, guid: 03d8b1caff713054aafd5bf44af27f80, type: 3}
+  ButtonImg: {fileID: 6551765137481126758}
   m_sprites:
+  - {fileID: 21300000, guid: 3968571485de9c5418f0fd1bc72397b4, type: 3}
+  - {fileID: 21300000, guid: db6dba02c3e0e7d44ab5f17b2c4579d1, type: 3}
+  - {fileID: 21300000, guid: 1265eefb67431e141b25ddcf9c77b040, type: 3}
+  - {fileID: 21300000, guid: b27a04eb6042dbe4c8c4462d2a7f47d9, type: 3}
   - {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
@@ -334,13 +347,8 @@ MonoBehaviour:
   - {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Image: {fileID: 6551765137481126758}
+  m_Img: {fileID: 4138737320316586822}
   m_valueText: {fileID: 5672970819351521856}
-  playerData: {fileID: 0}
 --- !u!114 &6551765137481126758
 MonoBehaviour:
   m_ObjectHideFlags: 0
