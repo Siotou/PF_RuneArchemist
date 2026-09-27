@@ -7,6 +7,7 @@ public class PlayerData : MonoBehaviour
     [SerializeField] MaterialDatabase material;
     static public int[] Material_value;//素材の所持数
     static public bool[] Material_Get;//一度手に入れたことがあるか判定
+    public int Material_count;
 
     private void Awake()
     {
@@ -14,6 +15,17 @@ public class PlayerData : MonoBehaviour
         Material_value = new int[material.materials.Count];
         Material_Get = new bool[material.materials.Count];
         //デバッグ用
+        for (int i = 0; i < Material_count; i++)
+        {
+            Material_value[i] = 5;
+            Material_Get[i] = true;
+        }
+        for (int i = 0; i < 5; i++)
+        {
+            Material_value[i] = 0;
+            Material_Get[i] = true;
+        }
+        /*
         Material_value[0] = 3;
         Material_Get[0] = true;
         Material_value[1] = 3;
@@ -26,6 +38,11 @@ public class PlayerData : MonoBehaviour
         Material_Get[24] = true;
         Material_value[32] = 3;
         Material_Get[32] = true;
+        Material_value[2] = 0;
+        Material_Get[2] = true;
+        Material_value[3] = 0;
+        Material_Get[3] = true;
+        */
         //----------
 
     }
