@@ -283,11 +283,11 @@ public class CreateSkill : MonoBehaviour
 
         int a = afterstatus[1] + afterstatus[2] + beforestatus[5] + beforestatus[6];
 
-        afterstatus[0] = (a - a % 200) / 200;
+        afterstatus[0] = (a - a % 500) / 500;
 
         Debug.Log("Rank:" + afterstatus[0]);
 
-        if (afterstatus[0] > 4) afterstatus[0] = 4;
+        if (afterstatus[0] > 5) afterstatus[0] = 5;
         if (afterstatus[0] == 0)
         {
             RankText.text = "E";
@@ -296,7 +296,7 @@ public class CreateSkill : MonoBehaviour
         else if (afterstatus[0] == 1)
         {
             RankText.text = "D";
-            RankText.color = Color.blue;
+            RankText.color = new Color(0, 180f / 255f, 255f / 255f);
         }
         else if (afterstatus[0] == 2)
         {
@@ -306,11 +306,16 @@ public class CreateSkill : MonoBehaviour
         else if (afterstatus[0] == 3)
         {
             RankText.text = "B";
-            RankText.color = Color.green;
+            RankText.color = new Color(255f / 255f, 71f / 255f, 0);
         }
         else if (afterstatus[0] == 4)
         {
             RankText.text = "A";
+            RankText.color = new Color(255f / 255f, 171f / 255f, 0);
+        }
+        else if (afterstatus[0] == 5)
+        {
+            RankText.text = "S";
             RankText.color = Color.yellow;
         }
 
