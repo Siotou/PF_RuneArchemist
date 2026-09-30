@@ -206,7 +206,7 @@ public class CreateSkill : MonoBehaviour
         {
             SliderObj_item.SetActive(true);
             SCROLL = true;
-            scrolly = -300 + (button - (button - 1) % 6) / 6 * 170;
+            scrolly = -220 + (button - (button - 1) % 6) / 6 * 170;
         }
         else
         {
@@ -223,7 +223,7 @@ public class CreateSkill : MonoBehaviour
         Buttons[button].transform.localPosition =
             new Vector3(
                 -375 + button % 6 * 145,
-                155 - ((button - button % 6) / 6) * 170,
+                115 - ((button - button % 6) / 6) * 170,
                 0
             );
 
@@ -324,6 +324,5 @@ public class CreateSkill : MonoBehaviour
         aftertext[2].text = beforestatus[5].ToString();
         aftertext[3].text = beforestatus[6].ToString();
         aftertext[4].text = afterstatus[5].ToString();
-        material++;
     }
 }

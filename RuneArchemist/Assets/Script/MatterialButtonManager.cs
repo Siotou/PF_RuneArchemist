@@ -48,6 +48,11 @@ public class MatterialButtonManager : MonoBehaviour
 
     public void addmaterial()
     {
+        bool a = false;
+
+       // for(int i =0;i<)
+
+
         CreateSkill.addmaterial(MatterialNo);
 
         PlayerData.Material_value[MatterialNo]--;
@@ -72,5 +77,4 @@ public class MatterialButtonManager : MonoBehaviour
             m_Button.onClick.AddListener(addmaterial);
         }
     }
-
 }
