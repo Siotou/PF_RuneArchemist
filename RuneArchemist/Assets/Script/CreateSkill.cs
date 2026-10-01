@@ -1,3 +1,5 @@
+using JetBrains.Annotations;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +10,7 @@ public class CreateSkill : MonoBehaviour
 
     public int[] beforestatus = { 0, 0, 0, 0, 0, 0, 0, 0 };
     public int[] afterstatus = { 0, 0, 0, 0, 0, 0 };
-    public string[] magictypes = { "", "" };
+    public int[] magictypes = { 0, 0 };
 
 
 
@@ -25,6 +27,7 @@ public class CreateSkill : MonoBehaviour
     [Header("UI用")]
     [SerializeField] Text[] beforetexts;//生成前のステータスText
     [SerializeField] Text[] aftertext;//生成後のステータスText
+    [SerializeField] Color[] MagicColor;//魔法のテキストカラー
     [SerializeField] Text RankText;
     [SerializeField] GameObject[] Buttons;
     [SerializeField] GameObject ButtonPrefab;
@@ -39,13 +42,14 @@ public class CreateSkill : MonoBehaviour
     [SerializeField] Image MaxImg;
     [SerializeField] public int maxt_a = 0;
     [SerializeField] public int maxt_wait = 0;
-    [SerializeField] Image[] InputImg;
+    [SerializeField] public Image[] InputImg;
+    [SerializeField] Sprite nullsprite;
 
 
     [Space]
     //投入した素材
     public int material_value = 0;
-    public int[] material = { 0,0,0,0,0,0,0,0,0,0};
+    public int[] material;
     public int max_material=0;
 
 
@@ -53,8 +57,10 @@ public class CreateSkill : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        max_material = 5;
-        material = new int[max_material];
+        for (int i = 0; i < material.Length; i++)
+        {
+            material[i] = -1;
+        }
         Buttons = new GameObject[PlayerData.Material_value.Length];
         CreateButton(0);
     }
@@ -108,6 +114,9 @@ public class CreateSkill : MonoBehaviour
     {
 
     }
+
+
+
     // a=並び替え方法
     // 偶数=昇順、奇数=降順
     public void CreateButton(int a)
@@ -260,24 +269,58 @@ public class CreateSkill : MonoBehaviour
         button++;
     }
 
+    public void AllRidMaterial()
+    {
+        for (int i = 0; i < material.Length; i++)
+            RidMaterial(i);
+    }
 
+    public void RidMaterial(int m)
+    {
+        if (material[m] >= 0)
+        {
+            int[] s =
+                { materialdatabase.materials[material[m]].Fire,
+            materialdatabase.materials[material[m]].Water,
+            materialdatabase.materials[material[m]].Wind,
+            materialdatabase.materials[material[m]].Rock,
+            materialdatabase.materials[material[m]].Thunder,
+            materialdatabase.materials[material[m]].Attack,
+            materialdatabase.materials[material[m]].Speed,
+            materialdatabase.materials[material[m]].MP, };
+            for (int i = 0; i < s.Length; i++)
+            {
+                beforestatus[i] -= s[i];
+            }
+            PlayerData.Material_value[material[m]]++;
+            material[m] = -1;
+            InputImg[m].sprite = nullsprite;
+            StatusCheck();
+        }
+    }
 
     public void addmaterial(int m)
     {
         int[] s = 
             { materialdatabase.materials[m].Fire, materialdatabase.materials[m].Water,
-            materialdatabase.materials[m].Wind, materialdatabase.materials[m].Thunder,
-            materialdatabase.materials[m].Rock, 
+            materialdatabase.materials[m].Wind, materialdatabase.materials[m].Rock,
+            materialdatabase.materials[m].Thunder, 
             materialdatabase.materials[m].Attack, materialdatabase.materials[m].Speed,
             materialdatabase.materials[m].MP, };
         for (int i = 0; i < s.Length; i++)
         {
             beforestatus[i] += s[i];
         }
-        int[] types = 
+        StatusCheck();
+    }
+
+    void StatusCheck()
+    {
+        int[] types =
             { beforestatus[0], beforestatus[1], beforestatus[2],
             beforestatus[3], beforestatus[4] };
-        string[] type = { "火","水","風","雷","岩",};
+        string[] type = { "火", "水", "風", "岩", "雷", };
+        int[] typeno = { 0,1, 2, 3, 4, };
         for (int i = 0; i < types.Length - 1; i++)
         {
             for (int j = 0; j < types.Length - 1 - i; j++)
@@ -286,10 +329,13 @@ public class CreateSkill : MonoBehaviour
                 {
                     int temp = types[j];
                     string ii = type[j];
+                    int iii = typeno[j];
                     types[j] = types[j + 1];
                     types[j + 1] = temp;
                     type[j] = type[j + 1];
                     type[j + 1] = ii;
+                    typeno[j] = typeno[j + 1];
+                    typeno[j+1] = iii;
                 }
             }
         }
@@ -300,8 +346,28 @@ public class CreateSkill : MonoBehaviour
             "→5." + type[4] + ":" + types[4]);
         afterstatus[1] = types[0];
         afterstatus[2] = types[1];
-        magictypes[0] = type[0];
-        magictypes[1] = type[1];
+        magictypes[0] = typeno[0];
+        magictypes[1] = typeno[1];
+        if (afterstatus[1] > 0)
+        {
+            aftertext[5].text = type[0];
+            aftertext[5].color = MagicColor[magictypes[0]];
+        }
+        else
+        {
+            aftertext[5].text = "-";
+            aftertext[5].color = Color.gray;
+        }
+        if (afterstatus[2] > 0)
+        {
+            aftertext[6].text = type[1];
+            aftertext[6].color = MagicColor[magictypes[1]];
+        }
+        else
+        {
+            aftertext[6].text = "-";
+            aftertext[6].color = Color.gray;
+        }
 
         int a = afterstatus[1] + afterstatus[2] + beforestatus[5] + beforestatus[6];
 
@@ -341,10 +407,16 @@ public class CreateSkill : MonoBehaviour
             RankText.color = Color.yellow;
         }
 
+        afterstatus[5] = (afterstatus[0] + 1) * 6 - (int)(beforestatus[7] / 50);
+        if (afterstatus[5] <= 0)
+            afterstatus[5] = 1;
+
+
         aftertext[0].text = afterstatus[1].ToString();
         aftertext[1].text = afterstatus[2].ToString();
         aftertext[2].text = beforestatus[5].ToString();
         aftertext[3].text = beforestatus[6].ToString();
         aftertext[4].text = afterstatus[5].ToString();
+
     }
 }

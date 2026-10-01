@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using UnityEngine;
 
 public class PlayerData : MonoBehaviour
@@ -25,25 +26,6 @@ public class PlayerData : MonoBehaviour
             Material_value[i] = 0;
             Material_Get[i] = true;
         }
-        /*
-        Material_value[0] = 3;
-        Material_Get[0] = true;
-        Material_value[1] = 3;
-        Material_Get[1] = true;
-        Material_value[7] = 3;
-        Material_Get[7] = true;
-        Material_value[17] = 3;
-        Material_Get[17] = true;
-        Material_value[24] = 3;
-        Material_Get[24] = true;
-        Material_value[32] = 3;
-        Material_Get[32] = true;
-        Material_value[2] = 0;
-        Material_Get[2] = true;
-        Material_value[3] = 0;
-        Material_Get[3] = true;
-        */
-        //----------
 
     }
 

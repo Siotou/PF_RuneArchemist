@@ -42,8 +42,26 @@ public class MatterialButtonManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         m_valueText.text = "×" + PlayerData.Material_value[MatterialNo];
+
+
+        //所持数でボタンの状態を変化
+        if (PlayerData.Material_value[MatterialNo] == 0)
+        {
+            ButtonImg.color = Color.gray;
+            m_Img.color = Color.gray;
+            // 既存の登録をすべてクリアする場合（必要に応じて）
+            m_Button.onClick.RemoveAllListeners();
+        }
+        else
+        {
+            ButtonImg.color = Color.white;
+            m_Img.color = Color.white;
+            // 既存の登録をすべてクリアする場合（必要に応じて）
+            m_Button.onClick.RemoveAllListeners();
+            // クリック時に実行したいメソッドを登録
+            m_Button.onClick.AddListener(addmaterial);
+        }
     }
 
     public void addmaterial()
@@ -52,10 +70,11 @@ public class MatterialButtonManager : MonoBehaviour
 
         for (int i = 0; i < CreateSkill.max_material; i++)
         {
-            if (CreateSkill.material[i] == 0)
+            if (CreateSkill.material[i] == -1)
             {
                 a = true;
                 CreateSkill.material[i] = MatterialNo;
+                CreateSkill.InputImg[i].sprite = m_sprites[MatterialNo];
                 break;
             }
         }
