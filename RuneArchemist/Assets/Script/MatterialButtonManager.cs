@@ -50,31 +50,47 @@ public class MatterialButtonManager : MonoBehaviour
     {
         bool a = false;
 
-       // for(int i =0;i<)
-
-
-        CreateSkill.addmaterial(MatterialNo);
-
-        PlayerData.Material_value[MatterialNo]--;
-        if (PlayerData.Material_value[MatterialNo]<=0)
-            PlayerData.Material_value[MatterialNo] = 0;
-
-        //所持数でボタンの状態を変化
-        if (PlayerData.Material_value[MatterialNo] == 0)
+        for (int i = 0; i < CreateSkill.max_material; i++)
         {
-            ButtonImg.color = Color.gray;
-            m_Img.color = Color.gray;
-            // 既存の登録をすべてクリアする場合（必要に応じて）
-            m_Button.onClick.RemoveAllListeners();
+            if (CreateSkill.material[i] == 0)
+            {
+                a = true;
+                CreateSkill.material[i] = MatterialNo;
+                break;
+            }
+        }
+
+
+        if (a)
+        {
+            CreateSkill.addmaterial(MatterialNo);
+
+            PlayerData.Material_value[MatterialNo]--;
+            if (PlayerData.Material_value[MatterialNo] <= 0)
+                PlayerData.Material_value[MatterialNo] = 0;
+
+            //所持数でボタンの状態を変化
+            if (PlayerData.Material_value[MatterialNo] == 0)
+            {
+                ButtonImg.color = Color.gray;
+                m_Img.color = Color.gray;
+                // 既存の登録をすべてクリアする場合（必要に応じて）
+                m_Button.onClick.RemoveAllListeners();
+            }
+            else
+            {
+                ButtonImg.color = Color.white;
+                m_Img.color = Color.white;
+                // 既存の登録をすべてクリアする場合（必要に応じて）
+                m_Button.onClick.RemoveAllListeners();
+                // クリック時に実行したいメソッドを登録
+                m_Button.onClick.AddListener(addmaterial);
+            }
         }
         else
         {
-            ButtonImg.color = Color.white;
-            m_Img.color = Color.white;
-            // 既存の登録をすべてクリアする場合（必要に応じて）
-            m_Button.onClick.RemoveAllListeners();
-            // クリック時に実行したいメソッドを登録
-            m_Button.onClick.AddListener(addmaterial);
+            CreateSkill.maxt_a = 50;
+            CreateSkill.maxt_wait = 15;
         }
     }
 }

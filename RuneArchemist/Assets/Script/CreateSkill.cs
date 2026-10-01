@@ -35,15 +35,26 @@ public class CreateSkill : MonoBehaviour
     [SerializeField] GameObject SliderObj_item;
     [SerializeField] Slider ItemSlider;//アイテム欄のスクロール用
     [SerializeField] int button = 0;//生成したボタンの数
+    [SerializeField] Text MaxText;
+    [SerializeField] Image MaxImg;
+    [SerializeField] public int maxt_a = 0;
+    [SerializeField] public int maxt_wait = 0;
+    [SerializeField] Image[] InputImg;
+
 
     [Space]
     //投入した素材
-    public int material=0;
+    public int material_value = 0;
+    public int[] material = { 0,0,0,0,0,0,0,0,0,0};
     public int max_material=0;
+
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        max_material = 5;
+        material = new int[max_material];
         Buttons = new GameObject[PlayerData.Material_value.Length];
         CreateButton(0);
     }
@@ -58,14 +69,25 @@ public class CreateSkill : MonoBehaviour
                 beforetexts[i].text = beforestatus[i].ToString();
             }
         }
+        if (MaxText != null)
+        {
+            MaxText.color = new Color(1,0,0,maxt_a/50f) ;
+            MaxImg.color = new Color(0.5f, 0.5f, 0.5f, maxt_a / 50f);
+        }
+
+        if (maxt_wait != 0)
+            maxt_wait--;
+        else if (maxt_a != 0)
+            maxt_a--;
+
         if (SCROLL)
         {
             Itempos.localPosition = new Vector3(0, ItemSlider.value * scrolly, 0);
             float wheel = Input.mouseScrollDelta.y;
             if (wheel > 0)
-                ItemSlider.value -= (float)30/scrolly;
+                ItemSlider.value -= (float)30 / scrolly;
             else if (wheel < 0)
-                ItemSlider.value += (float)30/scrolly;
+                ItemSlider.value += (float)30 / scrolly;
 
         }
         if (Input.GetKeyDown(KeyCode.Alpha1))
