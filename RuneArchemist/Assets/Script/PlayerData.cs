@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerData : MonoBehaviour
@@ -9,6 +10,8 @@ public class PlayerData : MonoBehaviour
     static public int[] Material_value;//‘fŞ‚ÌŠ”
     static public bool[] Material_Get;//ˆê“xè‚É“ü‚ê‚½‚±‚Æ‚ª‚ ‚é‚©”»’è
     public int Material_count;
+
+    public static List<MagicData> MagicList = new List<MagicData>();
 
     private void Awake()
     {
@@ -26,16 +29,27 @@ public class PlayerData : MonoBehaviour
             Material_value[i] = 0;
             Material_Get[i] = true;
         }
-
     }
 
     void Start()
     {
-        
-    }
 
+    }
     void Update()
     {
-        
+
+    }
+    public void CreateMagic(int[] afterstatus)
+    {
+        MagicData magic = new MagicData();
+
+        magic.Rank = afterstatus[0];
+        magic.Magic1_value = afterstatus[1];
+        magic.Magic2_value = afterstatus[2];
+        magic.Attack = afterstatus[3];
+        magic.Speed = afterstatus[4];
+        magic.MP = afterstatus[5];
+
+        PlayerData.MagicList.Add(magic);
     }
 }
