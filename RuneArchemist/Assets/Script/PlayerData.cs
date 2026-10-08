@@ -11,6 +11,9 @@ public class PlayerData : MonoBehaviour
     static public bool[] Material_Get;//ˆê“xŽè‚É“ü‚ê‚½‚±‚Æ‚ª‚ ‚é‚©”»’è
     public int Material_count;
 
+
+    [SerializeField]private List<MagicData> magicDatas;
+
     public static List<MagicData> MagicList = new List<MagicData>();
 
     private void Awake()
@@ -37,18 +40,25 @@ public class PlayerData : MonoBehaviour
     }
     void Update()
     {
-
+        magicDatas = MagicList;
     }
-    public void CreateMagic(int[] afterstatus)
+    static public void CreateMagic(int[] afterstatus,int[] magictypes)
     {
         MagicData magic = new MagicData();
 
         magic.Rank = afterstatus[0];
-        magic.Magic1_value = afterstatus[1];
-        magic.Magic2_value = afterstatus[2];
+        magic.Magic_value[0] = afterstatus[1];
+        magic.Magic_value[1] = afterstatus[2];
         magic.Attack = afterstatus[3];
         magic.Speed = afterstatus[4];
         magic.MP = afterstatus[5];
+        for (int i = 0; i < magictypes.Length; i++)
+        {
+            if (magic.Magic_value[i] > 0)
+                magic.Magic[i] = magictypes[i]+1;
+            else
+                magic.Magic[i] = 0;
+        }
 
         PlayerData.MagicList.Add(magic);
     }

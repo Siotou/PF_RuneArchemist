@@ -3,12 +3,10 @@ using System;
 [Serializable]
 public class MagicData
 {
-    public int Rank;
-    public int Magic1;
-    public int Magic1_value;
-    public int Magic2;
-    public int Magic2_value;
-    public int Attack;
-    public int Speed;
-    public int MP;
+    public int Rank = 0;
+    public int[] Magic = { 0, 0 };
+    public int[] Magic_value = { 0, 0 };
+    public int Attack = 0;
+    public int Speed = 0;
+    public int MP = 0;
 }

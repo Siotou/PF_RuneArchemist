@@ -2895,6 +2895,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   material: {fileID: 11400000, guid: 9d8dc30a668a150409842480a549dd1e, type: 2}
   Material_count: 40
+  magicDatas: []
 --- !u!4 &532421755
 Transform:
   m_ObjectHideFlags: 0
@@ -3413,13 +3414,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 334491402}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 334491403}
+        m_TargetAssemblyTypeName: CreateSkill, Assembly-CSharp
+        m_MethodName: SkillCreate
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

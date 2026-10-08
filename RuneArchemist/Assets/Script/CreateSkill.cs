@@ -320,7 +320,7 @@ public class CreateSkill : MonoBehaviour
             { beforestatus[0], beforestatus[1], beforestatus[2],
             beforestatus[3], beforestatus[4] };
         string[] type = { "‰Î", "…", "•—", "Šâ", "—‹", };
-        int[] typeno = { 0,1, 2, 3, 4, };
+        int[] typeno = { 0, 1, 2, 3, 4, };
         for (int i = 0; i < types.Length - 1; i++)
         {
             for (int j = 0; j < types.Length - 1 - i; j++)
@@ -368,6 +368,9 @@ public class CreateSkill : MonoBehaviour
             aftertext[6].text = "-";
             aftertext[6].color = Color.gray;
         }
+        
+        afterstatus[3] = beforestatus[5];
+        afterstatus[4] = beforestatus[6];
 
         int a = afterstatus[1] + afterstatus[2] + beforestatus[5] + beforestatus[6];
 
@@ -376,7 +379,12 @@ public class CreateSkill : MonoBehaviour
         Debug.Log("Rank:" + afterstatus[0]);
 
         if (afterstatus[0] > 5) afterstatus[0] = 5;
-        if (afterstatus[0] == 0)
+        if (a == 0)
+        {
+            RankText.text = "-";
+            RankText.color = Color.gray;
+        }
+        else if (afterstatus[0] == 0)
         {
             RankText.text = "E";
             RankText.color = Color.gray;
@@ -411,12 +419,43 @@ public class CreateSkill : MonoBehaviour
         if (afterstatus[5] <= 0)
             afterstatus[5] = 1;
 
+        if (a == 0) afterstatus[5] = 0;
 
         aftertext[0].text = afterstatus[1].ToString();
         aftertext[1].text = afterstatus[2].ToString();
-        aftertext[2].text = beforestatus[5].ToString();
-        aftertext[3].text = beforestatus[6].ToString();
+        aftertext[2].text = afterstatus[3].ToString();
+        aftertext[3].text = afterstatus[4].ToString();
         aftertext[4].text = afterstatus[5].ToString();
+    }
 
+    public void SkillCreate()
+    {
+        Debug.Log("ƒXƒLƒ‹ì¬");
+
+        Vector2 statusbaf = new Vector2(1f, 1f);
+        
+        statusbaf.x = 
+            magicparsent[magictypes[0]].x*(afterstatus[1]/100)
+            + magicparsent[magictypes[1]].x*(afterstatus[2]/100);
+        statusbaf.y = 
+            magicparsent[magictypes[0]].y*(afterstatus[1]/100)
+            + magicparsent[magictypes[1]].y*(afterstatus[2]/100);
+        
+        afterstatus[3] = (int)(afterstatus[3]*statusbaf.x);
+        afterstatus[4] = (int)(afterstatus[4]*statusbaf.y);
+
+        StatusCheck();
+        PlayerData.CreateMagic(afterstatus,magictypes);
+        for (int i = 0; i < max_material; i++)
+        {
+            material[i] = -1;
+            InputImg[i].sprite = nullsprite;
+        }
+        material_value = 0;
+        for(int i= 0; i < beforestatus.Length; i++)
+            beforestatus[i] = 0;
+        for(int i= 0; i < afterstatus.Length; i++)
+            afterstatus[i] = 0;
+        StatusCheck();
     }
 }
