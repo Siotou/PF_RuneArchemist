@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,7 +14,7 @@ public class MatterialButtonManager : MonoBehaviour
     [SerializeField] Sprite[] ButtonSprite;
     [SerializeField] Image ButtonImg;
     [SerializeField] Sprite[] m_sprites;
-    [SerializeField]Image m_Img;
+    [SerializeField] Image m_Img;
     [SerializeField] Text m_valueText;//素材の所持数
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -66,50 +67,54 @@ public class MatterialButtonManager : MonoBehaviour
 
     public void addmaterial()
     {
-        bool a = false;
-
-        for (int i = 0; i < CreateSkill.max_material; i++)
+        if (CreateSkill.CreateMove == 0)
         {
-            if (CreateSkill.material[i] == -1)
+            bool a = false;
+
+            for (int i = 0; i < CreateSkill.max_material; i++)
             {
-                a = true;
-                CreateSkill.material[i] = MatterialNo;
-                CreateSkill.InputImg[i].sprite = m_sprites[MatterialNo];
-                break;
+                if (CreateSkill.material[i] == -1)
+                {
+                    a = true;
+                    CreateSkill.material[i] = MatterialNo;
+                    CreateSkill.InputImg[i].sprite = m_sprites[MatterialNo];
+                    break;
+                }
             }
-        }
 
 
-        if (a)
-        {
-            CreateSkill.addmaterial(MatterialNo);
-
-            PlayerData.Material_value[MatterialNo]--;
-            if (PlayerData.Material_value[MatterialNo] <= 0)
-                PlayerData.Material_value[MatterialNo] = 0;
-
-            //所持数でボタンの状態を変化
-            if (PlayerData.Material_value[MatterialNo] == 0)
+            if (a)
             {
-                ButtonImg.color = Color.gray;
-                m_Img.color = Color.gray;
-                // 既存の登録をすべてクリアする場合（必要に応じて）
-                m_Button.onClick.RemoveAllListeners();
+                CreateSkill.addmaterial(MatterialNo);
+
+                PlayerData.Material_value[MatterialNo]--;
+                if (PlayerData.Material_value[MatterialNo] <= 0)
+                    PlayerData.Material_value[MatterialNo] = 0;
+
+                //所持数でボタンの状態を変化
+                if (PlayerData.Material_value[MatterialNo] == 0)
+                {
+                    ButtonImg.color = Color.gray;
+                    m_Img.color = Color.gray;
+                    // 既存の登録をすべてクリアする場合（必要に応じて）
+                    m_Button.onClick.RemoveAllListeners();
+                }
+                else
+                {
+                    ButtonImg.color = Color.white;
+                    m_Img.color = Color.white;
+                    // 既存の登録をすべてクリアする場合（必要に応じて）
+                    m_Button.onClick.RemoveAllListeners();
+                    // クリック時に実行したいメソッドを登録
+                    m_Button.onClick.AddListener(addmaterial);
+                }
             }
             else
             {
-                ButtonImg.color = Color.white;
-                m_Img.color = Color.white;
-                // 既存の登録をすべてクリアする場合（必要に応じて）
-                m_Button.onClick.RemoveAllListeners();
-                // クリック時に実行したいメソッドを登録
-                m_Button.onClick.AddListener(addmaterial);
+                CreateSkill.maxt_a = 50;
+                CreateSkill.maxt_wait = 15;
+                CreateSkill.MaxText.text = "素材がもう入りません。";
             }
-        }
-        else
-        {
-            CreateSkill.maxt_a = 50;
-            CreateSkill.maxt_wait = 15;
         }
     }
 }

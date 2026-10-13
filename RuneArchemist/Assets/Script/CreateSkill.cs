@@ -1,6 +1,8 @@
 using JetBrains.Annotations;
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class CreateSkill : MonoBehaviour
@@ -38,10 +40,18 @@ public class CreateSkill : MonoBehaviour
     [SerializeField] GameObject SliderObj_item;
     [SerializeField] Slider ItemSlider;//アイテム欄のスクロール用
     [SerializeField] int button = 0;//生成したボタンの数
-    [SerializeField] Text MaxText;
+    [SerializeField] public Text MaxText;
     [SerializeField] Image MaxImg;
     [SerializeField] public int maxt_a = 0;
     [SerializeField] public int maxt_wait = 0;
+    [SerializeField] CanvasGroup MagicBonusText;
+    [SerializeField] public int CreateMove = 0;
+    [SerializeField] int CreateWait = 0;
+    [SerializeField] Text MagicName;
+    [SerializeField] Text MagicRank;
+    [SerializeField] Text MagicStatus;
+    [SerializeField] CanvasGroup MagicComplete;
+    [SerializeField] GameObject MagicCompleteObj;
     [SerializeField] public Image[] InputImg;
     [SerializeField] Sprite nullsprite;
 
@@ -86,16 +96,95 @@ public class CreateSkill : MonoBehaviour
         else if (maxt_a != 0)
             maxt_a--;
 
-        if (SCROLL)
+        if (CreateMove == 0)
         {
-            Itempos.localPosition = new Vector3(0, ItemSlider.value * scrolly, 0);
-            float wheel = Input.mouseScrollDelta.y;
-            if (wheel > 0)
-                ItemSlider.value -= (float)30 / scrolly;
-            else if (wheel < 0)
-                ItemSlider.value += (float)30 / scrolly;
+            if (SCROLL)
+            {
+                Itempos.localPosition = new Vector3(0, ItemSlider.value * scrolly, 0);
+                float wheel = Input.mouseScrollDelta.y;
+                if (wheel > 0)
+                    ItemSlider.value -= (float)30 / scrolly;
+                else if (wheel < 0)
+                    ItemSlider.value += (float)30 / scrolly;
 
+            }
         }
+        else if (CreateMove == 1)
+        {
+            if (MagicBonusText.alpha < 1)
+                MagicBonusText.alpha += 0.02f;
+
+            for (int i = 0; i < 2; i++)
+            {
+                int index = i + 2;
+                int target = afterstatus[i + 3];
+                int current = int.Parse(aftertext[index].text);
+
+                int b = 0;
+
+                if (current > target)
+                    b = -2;
+                else if (current < target)
+                    b = 2;
+
+                current += b;
+
+                // 目標値を通り越さないように補正
+                if (b > 0 && current > target)
+                    current = target;
+                else if (b < 0 && current < target)
+                    current = target;
+
+                aftertext[index].text = current.ToString();
+            }
+
+            if (int.Parse(aftertext[2].text) == afterstatus[3] &&
+                int.Parse(aftertext[3].text) == afterstatus[4])
+            {
+                if (CreateWait == 0)
+                    RankCheck();
+                CreateWait++;
+            }
+            if (CreateWait > 90)
+            {
+                MagicBonusText.alpha = 0;
+                CreateMove = 2;
+                MagicName.text = "魔法第"+ PlayerData.MagicList.Count+"号";
+                MagicRank.text = RankText.text;
+                MagicStatus.text = 
+                    "属性：" + aftertext[5].text + "+" + aftertext[6].text +
+                    "　MP：" + afterstatus[5] + "\n"+
+                    "攻撃力：" + afterstatus[3] +"　速度：" + afterstatus[4];
+                MagicCompleteObj.SetActive(true);
+                PlayerData.CreateMagic(MagicName.text,afterstatus, magictypes);
+
+                for (int i = 0; i < material.Length; i++)
+                {
+                    material[i] = -1;
+                    InputImg[i].sprite = nullsprite;
+                }
+                material_value = 0;
+
+                for (int i = 0; i < beforestatus.Length; i++)
+                    beforestatus[i] = 0;
+                for (int i = 0; i < afterstatus.Length; i++)
+                    afterstatus[i] = 0;
+                StatusCheck();
+            }
+        }
+        else if (CreateMove == 2)
+        {
+            if (MagicComplete.alpha < 1)
+                MagicComplete.alpha += 0.02f;
+            if (MagicComplete.alpha == 1 && Input.GetMouseButtonDown(0))
+            {
+                CreateMove = 0;
+                CreateWait = 0;
+                MagicComplete.alpha = 0;
+                MagicCompleteObj.SetActive(false);
+            }
+        }
+
         if (Input.GetKeyDown(KeyCode.Alpha1))
             CreateButton(0);
         if (Input.GetKeyDown(KeyCode.Alpha2))
@@ -104,16 +193,13 @@ public class CreateSkill : MonoBehaviour
             CreateButton(2);
         if (Input.GetKeyDown(KeyCode.Alpha4))
             CreateButton(3);
+
         if (Input.GetKeyDown(KeyCode.Alpha5))
             CreateButton(4);
         if (Input.GetKeyDown(KeyCode.Alpha6))
             CreateButton(5);
     }
 
-    public void SkillBuild(int[] t, int[]s)
-    {
-
-    }
 
 
 
@@ -371,14 +457,19 @@ public class CreateSkill : MonoBehaviour
         
         afterstatus[3] = beforestatus[5];
         afterstatus[4] = beforestatus[6];
+        RankCheck();
+    }
 
-        int a = afterstatus[1] + afterstatus[2] + beforestatus[5] + beforestatus[6];
+    void RankCheck()
+    {
 
-        afterstatus[0] = (a - a % 500) / 500;
+        int a = afterstatus[1] + afterstatus[2] + afterstatus[3] + afterstatus[4];
+
+        afterstatus[0] = (a - a % 750) / 750;
 
         Debug.Log("Rank:" + afterstatus[0]);
 
-        if (afterstatus[0] > 5) afterstatus[0] = 5;
+        if (afterstatus[0] > 8) afterstatus[0] = 8;
         if (a == 0)
         {
             RankText.text = "-";
@@ -414,6 +505,21 @@ public class CreateSkill : MonoBehaviour
             RankText.text = "S";
             RankText.color = Color.yellow;
         }
+        else if (afterstatus[0] == 6)
+        {
+            RankText.text = "X";
+            RankText.color = Color.yellow;
+        }
+        else if (afterstatus[0] == 7)
+        {
+            RankText.text = "Z";
+            RankText.color = Color.yellow;
+        }
+        else if (afterstatus[0] == 8)
+        {
+            RankText.text = "Ω";
+            RankText.color = Color.yellow;
+        }
 
         afterstatus[5] = (afterstatus[0] + 1) * 6 - (int)(beforestatus[7] / 50);
         if (afterstatus[5] <= 0)
@@ -430,32 +536,29 @@ public class CreateSkill : MonoBehaviour
 
     public void SkillCreate()
     {
-        Debug.Log("スキル作成");
-
-        Vector2 statusbaf = new Vector2(1f, 1f);
-        
-        statusbaf.x = 
-            magicparsent[magictypes[0]].x*(afterstatus[1]/100)
-            + magicparsent[magictypes[1]].x*(afterstatus[2]/100);
-        statusbaf.y = 
-            magicparsent[magictypes[0]].y*(afterstatus[1]/100)
-            + magicparsent[magictypes[1]].y*(afterstatus[2]/100);
-        
-        afterstatus[3] = (int)(afterstatus[3]*statusbaf.x);
-        afterstatus[4] = (int)(afterstatus[4]*statusbaf.y);
-
-        StatusCheck();
-        PlayerData.CreateMagic(afterstatus,magictypes);
-        for (int i = 0; i < max_material; i++)
+        if (afterstatus[1] > 0)
         {
-            material[i] = -1;
-            InputImg[i].sprite = nullsprite;
+            Debug.Log("スキル作成");
+
+            Vector2 statusbaf = new Vector2(1f, 1f);
+
+            statusbaf.x =
+                magicparsent[magictypes[0]].x * (afterstatus[1] / 150f)
+                + magicparsent[magictypes[1]].x * (afterstatus[2] / 150f);
+            statusbaf.y =
+                magicparsent[magictypes[0]].y * (afterstatus[1] / 150f)
+                + magicparsent[magictypes[1]].y * (afterstatus[2] / 150f);
+
+            afterstatus[3] = Mathf.Max(1, (int)(afterstatus[3] * statusbaf.x));
+            afterstatus[4] = Mathf.Max(1, (int)(afterstatus[4] * statusbaf.y));
+            CreateMove = 1;
         }
-        material_value = 0;
-        for(int i= 0; i < beforestatus.Length; i++)
-            beforestatus[i] = 0;
-        for(int i= 0; i < afterstatus.Length; i++)
-            afterstatus[i] = 0;
-        StatusCheck();
+        else
+        {
+            maxt_a = 50;
+            maxt_wait = 15;
+            MaxText.text = "属性がありません。";
+        }
     }
+
 }

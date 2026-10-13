@@ -42,10 +42,11 @@ public class PlayerData : MonoBehaviour
     {
         magicDatas = MagicList;
     }
-    static public void CreateMagic(int[] afterstatus,int[] magictypes)
+    static public void CreateMagic(string magicname ,int[] afterstatus,int[] magictypes)
     {
         MagicData magic = new MagicData();
 
+        magic.Name = magicname;
         magic.Rank = afterstatus[0];
         magic.Magic_value[0] = afterstatus[1];
         magic.Magic_value[1] = afterstatus[2];
