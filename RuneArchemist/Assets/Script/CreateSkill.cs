@@ -465,7 +465,7 @@ public class CreateSkill : MonoBehaviour
 
         int a = afterstatus[1] + afterstatus[2] + afterstatus[3] + afterstatus[4];
 
-        afterstatus[0] = (a - a % 750) / 750;
+        afterstatus[0] = (a - a %1000) / 1000;
 
         Debug.Log("Rank:" + afterstatus[0]);
 
@@ -551,6 +551,10 @@ public class CreateSkill : MonoBehaviour
 
             afterstatus[3] = Mathf.Max(1, (int)(afterstatus[3] * statusbaf.x));
             afterstatus[4] = Mathf.Max(1, (int)(afterstatus[4] * statusbaf.y));
+            
+            if (afterstatus[3] > 9999) afterstatus[3] = 9999;
+            if (afterstatus[4] > 9999) afterstatus[4] = 9999;
+
             CreateMove = 1;
         }
         else
